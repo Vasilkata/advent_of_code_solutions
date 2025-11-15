@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]) {
 	//Print an error if the user put 2 or more arguments
 	if(argc > 2) {
-		printf("Error! Use: <input.txt>\n");
+		printf("Error! Usage: <input.txt>\n");
 		return 1;
 	}
 
@@ -17,10 +17,10 @@ int main(int argc, char *argv[]) {
 	}
 
 	//Create all variables needed
-	char c;
-	int floor = 0;
-	int position = 0;
-	bool entered_basement = false;
+	char c;							//a character for the command
+	int floor = 0;					//which floor Santa is on
+	int position = 0;				//the index of the character
+	bool entered_basement = false;	//a bool for if Santa has entered the basement yet
 
 	//Read every character in the file till we encounter the EOF character
 	while((c = fgetc(file)) != EOF) {
@@ -29,11 +29,11 @@ int main(int argc, char *argv[]) {
 			floor++;
 			position++;
 		}
-		//Every time we see ')' we deacrese by one
+		//Every time we see ')' we decrease by one
 		else if(c == ')') {
 			floor--;
 			position++;
-			//Check for the first time he enters the basement
+			//Check if it's the first time Santa enters the basement
 			if(!entered_basement && floor == -1) {
 				printf("Entered the basement at position %d\n", position);
 				entered_basement = true;
